@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Products</title>
 </head>
 <body>
 
+    <h1>Produktliste</h1>
+    <div th:each="p : ${products}">
+        <span th:text="${p.id}">id</span>
+        <span th:text="${p.name}">navn</span>
+        <span th:text="${p.price}">pris</span>
+    </div>
 </body>
 </html>

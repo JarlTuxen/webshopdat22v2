@@ -16,7 +16,7 @@ public class WebshopController {
 
     @GetMapping("/")
     public String index(Model model){
-        productRepository.getAll();
+        model.addAttribute("products", productRepository.getAll());
         return "index";
     }
 
