@@ -52,4 +52,11 @@ public class WebshopController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable("id") int sletId){
+        productRepository.deleteProductById(sletId);
+
+        return "redirect:/";
+    }
 }

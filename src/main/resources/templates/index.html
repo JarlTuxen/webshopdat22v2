@@ -12,6 +12,7 @@
         <span th:text="${p.name}">navn</span>
         <span th:text="${p.price}">pris</span>
         <span><a th:href="@{'/update/' + ${p.id}}">Opdater</a></span>
+        <span><a th:href="@{'/delete/' + ${p.id}}">Delete</a></span>
     </div>
 </body>
 </html>

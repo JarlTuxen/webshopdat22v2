@@ -119,4 +119,23 @@ public class ProductRepository {
         }
     }
 
+    public void deleteProductById(int sletId){
+        try {
+            Connection conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/webshop",
+                    "root", "qJiw03K2zwJD");
+            String queryCreate = "DELETE product WHERE id=?";
+            PreparedStatement psts = conn.prepareStatement(queryCreate);
+
+            psts.setInt(1, sletId);
+
+            //execute query
+            psts.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Couldn't connect to db");
+            e.printStackTrace();
+        }
+    }
+
 }
