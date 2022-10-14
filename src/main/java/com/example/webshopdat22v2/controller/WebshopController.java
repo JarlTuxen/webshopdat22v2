@@ -1,9 +1,13 @@
 package com.example.webshopdat22v2.controller;
 
+import com.example.webshopdat22v2.model.Product;
 import com.example.webshopdat22v2.repository.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WebshopController {
@@ -20,4 +24,28 @@ public class WebshopController {
         return "index";
     }
 
+    @GetMapping("/create")
+    public String showCreateProduct(){
+        return "create";
+    }
+
+    @PostMapping("/create")
+    public String createProduct(@RequestParam("name") String navn, @RequestParam("price") int pris){
+
+        Product newProduct = new Product();
+        newProduct.setName(navn);
+        newProduct.setPrice(pris);
+        System.out.println(newProduct);
+        //gem i repository
+        productRepository.addProduct(newProduct);
+        return "redirect:/";
+    }
+
+    @GetMapping("/update/{id}")
+    public String showUpdateProduct(@PathVariable("id") int sletId, Model model){
+        //hent produkt id fra repo og læg i model
+        model.addAttribute("produkt",
+                productRepository.findProductById(sletId));
+        return "update";
+    }
 }
