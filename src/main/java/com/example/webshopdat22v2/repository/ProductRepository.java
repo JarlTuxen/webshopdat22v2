@@ -124,7 +124,7 @@ public class ProductRepository {
             Connection conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/webshop",
                     "root", "qJiw03K2zwJD");
-            String queryCreate = "DELETE product WHERE id=?";
+            String queryCreate = "DELETE FROM product WHERE id=?";
             PreparedStatement psts = conn.prepareStatement(queryCreate);
 
             psts.setInt(1, sletId);
