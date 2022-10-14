@@ -6,6 +6,18 @@
 </head>
 <body>
     <h1>Opdater Produkt</h1>
+    <form action="/update" method="post">
+
+        <input type="hidden" name="id" th:value="${product.id}">
+
+        <label for="name-field">Navn: </label>
+        <input id="name-field" name="name" th:value="${product.name}">
+
+        <label for="price-field">Pris: </label>
+        <input id="price-field" name="price" th:value="${product.price}">
+
+        <button type="submit">Opdater produkt</button>
+    </form>
 
 </body>
 </html>

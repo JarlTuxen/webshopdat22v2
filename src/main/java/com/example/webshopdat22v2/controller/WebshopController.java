@@ -4,10 +4,7 @@ import com.example.webshopdat22v2.model.Product;
 import com.example.webshopdat22v2.repository.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WebshopController {
@@ -44,8 +41,15 @@ public class WebshopController {
     @GetMapping("/update/{id}")
     public String showUpdateProduct(@PathVariable("id") int sletId, Model model){
         //hent produkt id fra repo og læg i model
-        model.addAttribute("produkt",
+        model.addAttribute("product",
                 productRepository.findProductById(sletId));
         return "update";
+    }
+
+    @PostMapping("/update")
+    public String updateProduct(@ModelAttribute Product product){
+        productRepository.updateProduct(product);
+
+        return "redirect:/";
     }
 }

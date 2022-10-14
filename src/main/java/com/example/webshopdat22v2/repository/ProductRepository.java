@@ -94,4 +94,29 @@ public class ProductRepository {
         return product;
 
     }
+
+    public void updateProduct(Product product){
+        try {
+            Connection conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/webshop",
+                    "root", "qJiw03K2zwJD");
+            String queryCreate = "UPDATE product " +
+                    "SET name=?, price=? WHERE id=?";
+            PreparedStatement psts = conn.prepareStatement(queryCreate);
+
+
+            //indsæt name og price i prepared statement
+            psts.setString(1, product.getName());
+            psts.setInt(2, product.getPrice());
+            psts.setInt(3,product.getId());
+
+            //execute query
+            psts.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Couldn't connect to db");
+            e.printStackTrace();
+        }
+    }
+
 }
