@@ -1,6 +1,7 @@
 package com.example.webshopdat22v2.repository;
 
 import com.example.webshopdat22v2.model.Product;
+
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
