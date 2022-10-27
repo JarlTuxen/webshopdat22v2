@@ -2,6 +2,7 @@ package com.example.webshopdat22v2.repository;
 
 import com.example.webshopdat22v2.model.Product;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -11,14 +12,23 @@ import java.util.List;
 @Repository
 public class ProductRepository {
 
+    @Value("${spring.datasource.url}")
+    private String db_url;
+
+    @Value("${spring.datasource.username}")
+    private String uid;
+
+    @Value("${spring.datasource.password}")
+    private String pwd;
+
     public List<Product> getAll(){
 
         List<Product> productList = new LinkedList<>();
 
         try {
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/webshop",
-                    "root", "qJiw03K2zwJD");
+            Connection conn = DriverManager.getConnection(db_url, uid, pwd);
+                    //"jdbc:mysql://localhost:3306/webshop",
+                    //"webshop_dat22v2", "DetErSnartJul!");
             PreparedStatement psts = conn.prepareStatement("SELECT * from product");
             ResultSet resultSet = psts.executeQuery();
 
