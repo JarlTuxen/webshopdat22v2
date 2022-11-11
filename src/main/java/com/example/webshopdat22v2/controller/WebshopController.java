@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class WebshopController {
 
@@ -58,5 +60,24 @@ public class WebshopController {
         productRepository.deleteProductById(sletId);
 
         return "redirect:/";
+    }
+
+    @GetMapping("/cookieset")
+    public String setCookie(HttpSession session){
+        session.setAttribute("username", "Arne-Bjarne");
+        return "CookieDemo";
+    }
+
+    @GetMapping("/cookieget")
+    public String getCookie(HttpSession session){
+        if (session.getAttribute("username") != null)         System.out.println(session.getAttribute("username"));
+        else System.out.println("username ikke sat");
+        return "CookieDemo";
+    }
+
+    @GetMapping("/cookieinvalidate")
+    public String invalidateCookie(HttpSession session){
+        session.invalidate();
+        return "CookieDemo";
     }
 }
